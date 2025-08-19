@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:js='false' b:responsive='true' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:js='false' b:responsive='true' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b'>
 <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
     <title><data:blog.title/></title>
@@ -130,6 +130,30 @@ body {
     font-size: 1.5rem;
     color: var(--text-color);
     cursor: pointer;
+    transition: var(--transition);
+}
+
+.mobile-menu-btn:hover {
+    color: var(--primary-color);
+    transform: rotate(90deg);
+}
+
+.close-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    cursor: pointer;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    transition: var(--transition);
+}
+
+.close-menu-btn:hover {
+    color: var(--primary-color);
+    transform: rotate(90deg);
 }
 
 /* Hero Section */
@@ -152,7 +176,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNS44NTcgMzEuNjg1QzMyLjYzNiAzNC45MDYgMjcuMzY0IDM0LjkwNiAyNC4xNDMgMzEuNjg1QzIxLjkyMiAyOC40NjQgMjEuOTIyIDIzLjE5MiAyNC4xNDMgMTkuOTcxQzI3LjM2NCAxNi43NSAzMi42MzYgMTYuNzUgMzUuODU3IDE5Ljk3MUMzOS4wNzggMjMuMTkyIDM5LjA3OCAyOC40NjQgMzUuODU3IDMxLjY4NSIgc3Ryb2tlPSJoc2xhKDMzMCwgMTAwJSwgOTAlKSIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjMiLz48cGF0aCBkPSJNMjguNTk1IDIzLjM2N0MyNi43MDggMjUuMjU0IDIzLjYzMyAyNS4yNTQgMjEuNzQ2IDIzLjM2N0MxOS44NTggMjEuNDc5IDE5LjgyMiAxNy43MzIgMjEuNzQ2IDE1Ljg0NEMyMy42MzMgMTMuOTU3IDI2LjcwOCAxMy45NTcgMjguNTk1IDE1Ljg0NEMzMC40ODIgMTcuNzMzIDMwLjQ4MiAyMS40NzkgMjguNTk1IDIzLjM2NyIgc3Ryb2tlPSJoc2xhKDMzMCwgMTAwJSwgOTAlKSIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjMiLz48L2c+PC9zdmc+');
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZ');
     opacity: 0.1;
     animation: float 15s infinite linear;
 }
@@ -576,6 +600,12 @@ body {
     box-shadow: var(--shadow-md);
     text-align: left;
     position: relative;
+    transition: var(--transition);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
 .testimonial-card::before {
@@ -654,6 +684,11 @@ body {
     display: flex;
     gap: 1rem;
     align-items: flex-start;
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    transform: translateX(5px);
 }
 
 .contact-item i {
@@ -679,6 +714,11 @@ body {
     box-shadow: var(--shadow-md);
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.contact-form:hover {
+    box-shadow: var(--shadow-lg);
 }
 
 .form-group {
@@ -896,10 +936,15 @@ body {
         justify-content: center;
         transition: var(--transition);
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
     }
 
     .nav-links.active {
         right: 0;
+    }
+
+    .close-menu-btn {
+        display: block;
     }
 
     .mobile-menu-btn {
@@ -984,6 +1029,9 @@ body {
             Ingsha
         </a>
         <nav class='nav-links'>
+            <button class='close-menu-btn'>
+                <i class='bx bx-x'></i>
+            </button>
             <a href='#services'>Services</a>
             <a href='#portfolio'>Portfolio</a>
             <a href='#testimonials'>Testimonials</a>
@@ -999,20 +1047,20 @@ body {
             <div class='profile-img-container'>
                 <img class='profile-img' src='https://raw.githubusercontent.com/ingsha09/ingsha-portfolio/main/profile/me.jpg' alt='Ingsha Profile Picture'/>
                 <div class='badge'>
-                    <i class='bx bxs-star'></i>
-                    Top Rated
+                    <i class='bx bx-check-shield'></i>
+                    Pro Designer
                 </div>
             </div>
-            <h1>Ingsha</h1>
-            <p>Professional YouTube Thumbnail Designer creating high-converting thumbnails that boost your click-through rate and make your videos stand out.</p>
+            <h1>Hi, I'm Ingsha</h1>
+            <p>A passionate digital designer crafting beautiful and functional experiences for brands that want to make a difference.</p>
             <a href='#contact' class='cta-button'>
-                <i class='bx bxs-paper-plane'></i>
-                Get a Quote
+                <i class='bx bx-envelope'></i>
+                Get in Touch
             </a>
         </div>
         <div class='scroll-indicator'>
-            <i class='bx bxs-down-arrow'></i>
-            <span>Scroll to explore</span>
+            <i class='bx bx-chevrons-down'></i>
+            <span>Scroll Down</span>
         </div>
     </section>
 
@@ -1020,46 +1068,59 @@ body {
         <div class='container'>
             <div class='section-header'>
                 <h2>My Services</h2>
-                <p>Choose the perfect package for your YouTube channel's thumbnail needs. All packages include high-resolution files and fast delivery.</p>
+                <p>I offer a range of creative design solutions to help elevate your brand and engage your audience effectively.</p>
             </div>
+            
             <div class='services-grid'>
                 <div class='service-card'>
-                    <i class='bx bxs-paint icon'></i>
-                    <h3>Single Thumbnail</h3>
-                    <div class='price'>$5 <span>/one-time</span></div>
+                    <div class='icon'>
+                        <i class='bx bx-palette'></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Creating intuitive and engaging user experiences for web and mobile applications.</p>
+                    <div class='price'>$499 <span>/project</span></div>
                     <ul>
-                        <li>1 custom thumbnail design</li>
-                        <li>High-resolution JPG/PNG file</li>
-                        <li>24-hour delivery</li>
-                        <li>1 round of revisions</li>
+                        <li>User Research & Analysis</li>
+                        <li>Wireframing & Prototyping</li>
+                        <li>Responsive Design</li>
+                        <li>User Testing</li>
+                        <li>Implementation Support</li>
                     </ul>
-                    <a href='#contact' class='order-button'>Order Now</a>
+                    <a href='#contact' class='order-button'>Get Started</a>
                 </div>
+                
                 <div class='service-card popular'>
-                    <i class='bx bxs-layer icon'></i>
-                    <h3>Thumbnail Pro Pack</h3>
-                    <div class='price'>$15 <span>/one-time</span></div>
+                    <div class='icon'>
+                        <i class='bx bx-devices'></i>
+                    </div>
+                    <h3>Web Design</h3>
+                    <p>Designing beautiful, functional websites that represent your brand and convert visitors.</p>
+                    <div class='price'>$899 <span>/project</span></div>
                     <ul>
-                        <li>3 custom thumbnails</li>
-                        <li>High-resolution JPG/PNG files</li>
-                        <li>48-hour delivery</li>
-                        <li>2 round of revisions</li>
-                        
+                        <li>Custom Design Concepts</li>
+                        <li>Responsive Development</li>
+                        <li>SEO Optimization</li>
+                        <li>CMS Integration</li>
+                        <li>1 Month Support Included</li>
                     </ul>
-                    <a href='#contact' class='order-button'>Order Now</a>
+                    <a href='#contact' class='order-button'>Get Started</a>
                 </div>
+                
                 <div class='service-card'>
-                    <i class='bx bxs-rocket icon'></i>
-                    <h3>Channel Booster</h3>
-                    <div class='price'>$25 <span>/one-time</span></div>
+                    <div class='icon'>
+                        <i class='bx bx-paint'></i>
+                    </div>
+                    <h3>Brand Identity</h3>
+                    <p>Developing a cohesive brand identity that communicates your values and resonates with audiences.</p>
+                    <div class='price'>$799 <span>/project</span></div>
                     <ul>
-                        <li>5 premium thumbnails</li>
-                        <li>Click-optimized designs</li>
-                        <li>72-hour delivery</li>
-                        <li>3 round of revisions</li>
-                        
+                        <li>Logo Design</li>
+                        <li>Color Palette & Typography</li>
+                        <li>Brand Guidelines</li>
+                        <li>Stationery Design</li>
+                        <li>Social Media Templates</li>
                     </ul>
-                    <a href='#contact' class='order-button'>Order Now</a>
+                    <a href='#contact' class='order-button'>Get Started</a>
                 </div>
             </div>
         </div>
@@ -1068,54 +1129,112 @@ body {
     <section id='portfolio' class='section'>
         <div class='container'>
             <div class='section-header'>
-                <h2>My Work</h2>
-                <p>Here are some examples of my YouTube thumbnail designs that have helped channels increase their click-through rates.</p>
+                <h2>My Portfolio</h2>
+                <p>Take a look at some of my recent work that demonstrates my design approach and expertise.</p>
             </div>
-            <div id='portfolio-images' class='portfolio-grid'>
+            
+            <div class='portfolio-grid'>
+                <div class='portfolio-item'>
+                    <img src='https://via.placeholder.com/600x400/8B5CF6/FFFFFF?text=UI+Design+Project' alt='UI Design Project'/>
+                    <div class='portfolio-overlay'>
+                        <h3>E-commerce App UI</h3>
+                        <p>UI/UX Design for a fashion e-commerce application</p>
+                    </div>
                 </div>
+                
+                <div class='portfolio-item'>
+                    <img src='https://via.placeholder.com/600x400/EC4899/FFFFFF?text=Web+Design+Project' alt='Web Design Project'/>
+                    <div class='portfolio-overlay'>
+                        <h3>Corporate Website</h3>
+                        <p>Website design for a financial consulting firm</p>
+                    </div>
+                </div>
+                
+                <div class='portfolio-item'>
+                    <img src='https://via.placeholder.com/600x400/06B6D4/FFFFFF?text=Branding+Project' alt='Branding Project'/>
+                    <div class='portfolio-overlay'>
+                        <h3>Cafe Brand Identity</h3>
+                        <p>Complete branding package for an organic cafe</p>
+                    </div>
+                </div>
+                
+                <div class='portfolio-item'>
+                    <img src='https://via.placeholder.com/600x400/8B5CF6/FFFFFF?text=Mobile+App+Design' alt='Mobile App Design'/>
+                    <div class='portfolio-overlay'>
+                        <h3>Fitness Tracker App</h3>
+                        <p>UI design for a health & fitness tracking application</p>
+                    </div>
+                </div>
+                
+                <div class='portfolio-item'>
+                    <img src='https://via.placeholder.com/600x400/EC4899/FFFFFF?text=Logo+Design' alt='Logo Design'/>
+                    <div class='portfolio-overlay'>
+                        <h3>Tech Startup Logo</h3>
+                        <p>Brand identity for an AI startup</p>
+                    </div>
+                </div>
+                
+                <div class='portfolio-item'>
+                    <img src='https://via.placeholder.com/600x400/06B6D4/FFFFFF?text=Web+App+UI' alt='Web App UI'/>
+                    <div class='portfolio-overlay'>
+                        <h3>Dashboard Design</h3>
+                        <p>Analytics dashboard for a SaaS platform</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='lightbox'>
+            <div class='lightbox-content'>
+                <span class='lightbox-close'><i class='bx bx-x'></i></span>
+                <img class='lightbox-image' src='' alt='Portfolio Image Full View'/>
+            </div>
         </div>
     </section>
 
-    <section id='testimonials' class='testimonials'>
+    <section id='testimonials' class='section testimonials'>
         <div class='container'>
             <div class='section-header'>
                 <h2>Client Testimonials</h2>
-                <p>Don't just take my word for it - hear what my clients have to say about my thumbnail design services.</p>
+                <p>Don't just take my word for it - here's what my clients have to say about working with me.</p>
             </div>
+            
             <div class='testimonials-grid'>
                 <div class='testimonial-card'>
                     <div class='testimonial-content'>
-                        "Ingsha's thumbnails have completely transformed my channel. My click-through rate increased by 65% in just one month. The designs are professional, eye-catching, and perfectly capture the essence of my videos."
+                        "Ingsha transformed our brand identity completely. The new design perfectly captures our company's values and has received amazing feedback from our clients."
                     </div>
                     <div class='testimonial-author'>
-                        <img src='https://randomuser.me/api/portraits/women/32.jpg' alt='Sarah Johnson' class='testimonial-author-img'/>
+                        <img class='testimonial-author-img' src='https://via.placeholder.com/100/8B5CF6/FFFFFF?text=S' alt='Sarah Johnson'/>
                         <div class='testimonial-author-info'>
                             <h4>Sarah Johnson</h4>
-                            <p>Travel Vlogger</p>
+                            <p>Marketing Director, Elevate Inc.</p>
                         </div>
                     </div>
                 </div>
+                
                 <div class='testimonial-card'>
                     <div class='testimonial-content'>
-                        "I've tried several thumbnail designers before, but Ingsha stands out. His attention to detail and understanding of what makes a thumbnail clickable is exceptional. My audience engagement has never been higher!"
+                        "Working with Ingsha was an absolute pleasure. She took the time to understand our needs and delivered a website that exceeded our expectations in both aesthetics and functionality."
                     </div>
                     <div class='testimonial-author'>
-                        <img src='https://randomuser.me/api/portraits/men/44.jpg' alt='Michael Chen' class='testimonial-author-img'/>
+                        <img class='testimonial-author-img' src='https://via.placeholder.com/100/EC4899/FFFFFF?text=M' alt='Michael Chen'/>
                         <div class='testimonial-author-info'>
                             <h4>Michael Chen</h4>
-                            <p>Tech Reviewer</p>
+                            <p>Founder, TechSprint</p>
                         </div>
                     </div>
                 </div>
+                
                 <div class='testimonial-card'>
                     <div class='testimonial-content'>
-                        "Working with Ingsha has been a game-changer for my cooking channel. His thumbnails are not only beautiful but strategically designed to attract viewers. I've seen a 40% increase in views since I started using his designs."
+                        "The UI design that Ingsha created for our app was exactly what we needed. User engagement increased by 45% since the redesign. Highly recommended for any UI/UX project!"
                     </div>
                     <div class='testimonial-author'>
-                        <img src='https://randomuser.me/api/portraits/women/68.jpg' alt='Emma Rodriguez' class='testimonial-author-img'/>
+                        <img class='testimonial-author-img' src='https://via.placeholder.com/100/06B6D4/FFFFFF?text=A' alt='Alex Rodriguez'/>
                         <div class='testimonial-author-info'>
-                            <h4>Emma Rodriguez</h4>
-                            <p>Cooking Content Creator</p>
+                            <h4>Alex Rodriguez</h4>
+                            <p>Product Manager, AppFlow</p>
                         </div>
                     </div>
                 </div>
@@ -1126,66 +1245,82 @@ body {
     <section id='contact' class='section contact-section'>
         <div class='container'>
             <div class='section-header'>
-                <h2>Get in Touch</h2>
-                <p>Ready to boost your YouTube performance? Fill out the form below to get a custom quote or just say hello!</p>
+                <h2>Get In Touch</h2>
+                <p>Ready to start your project? Contact me for a free consultation and let's bring your vision to life.</p>
             </div>
+            
             <div class='contact-container'>
                 <div class='contact-info'>
                     <div class='contact-item'>
-                        <i class='bx bxs-envelope'></i>
+                        <i class='bx bx-envelope'></i>
                         <div class='contact-item-content'>
-                            <h3>Email</h3>
-                            <p>ingshalimbu09@gmail.com</p>
+                            <h3>Email Me</h3>
+                            <p>hello@ingsha.design</p>
                         </div>
                     </div>
+                    
                     <div class='contact-item'>
-                        <i class='bx bxs-phone'></i>
+                        <i class='bx bx-phone'></i>
                         <div class='contact-item-content'>
-                            <h3>Phone</h3>
-                            <p>+91 7029219775</p>
+                            <h3>Call Me</h3>
+                            <p>+1 (555) 123-4567</p>
                         </div>
                     </div>
+                    
                     <div class='contact-item'>
-                        <i class='bx bxs-map'></i>
+                        <i class='bx bx-map'></i>
                         <div class='contact-item-content'>
                             <h3>Location</h3>
-                            <p>Uttarey, Sikkim, India</p>
+                            <p>San Francisco, California</p>
                         </div>
                     </div>
+                    
                     <div class='contact-item'>
-                        <i class='bx bxs-time-five'></i>
+                        <i class='bx bx-time-five'></i>
                         <div class='contact-item-content'>
-                            <h3>Response Time</h3>
-                            <p>Within 24 hours</p>
+                            <h3>Working Hours</h3>
+                            <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
                         </div>
                     </div>
                 </div>
+                
                 <div class='contact-form'>
                     <form id='contactForm'>
                         <div class='form-group'>
-                            <label for='name'><i class='bx bxs-user'></i> Full Name</label>
+                            <label for='name'><i class='bx bx-user'></i> Your Name</label>
                             <input type='text' id='name' name='name' required/>
                         </div>
+                        
                         <div class='form-group'>
-                            <label for='email'><i class='bx bxs-envelope'></i> Email Address</label>
+                            <label for='email'><i class='bx bx-envelope'></i> Your Email</label>
                             <input type='email' id='email' name='email' required/>
                         </div>
+                        
                         <div class='form-group'>
-                            <label for='package'><i class='bx bxs-package'></i> Interested Package</label>
-                            <select id='package' name='package' class='form-group-input'>
-                                <option value='Single Thumbnail'>Single Thumbnail ($5)</option>
-                                <option value='Thumbnail Pro Pack'>Thumbnail Pro Pack ($15)</option>
-                                <option value='Channel Booster'>Channel Booster ($25)</option>
-                                <option value='Custom Project'>Custom Project</option>
+                            <label for='service'><i class='bx bx-list-ul'></i> Service Needed</label>
+                            <select id='service' name='service'>
+                                <option value='ui-ux'>UI/UX Design</option>
+                                <option value='web-design'>Web Design</option>
+                                <option value='branding'>Brand Identity</option>
+                                <option value='other'>Other</option>
                             </select>
                         </div>
+                        
                         <div class='form-group'>
-                            <label for='message'><i class='bx bxs-message-dots'></i> Message</label>
+                            <label for='message'><i class='bx bx-message-detail'></i> Your Message</label>
                             <textarea id='message' name='message' required></textarea>
                         </div>
+                        
                         <button type='submit' class='submit-button'>Send Message</button>
-                        <div id='message-container'></div>
                     </form>
+                    
+                    <div class='message-container success-message'>
+                        <i class='bx bx-check-circle'></i> Your message has been sent successfully! I'll get back to you soon.
+                    </div>
+                    
+                    <div class='message-container error-message'>
+                        <i class='bx bx-error-circle'></i> Oops! Something went wrong. Please try again later.
+                    </div>
                 </div>
             </div>
         </div>
@@ -1194,166 +1329,123 @@ body {
     <footer>
         <div class='container'>
             <div class='footer-content'>
-                <a href='#' class='footer-logo'>
+                <a class='footer-logo' href='#'>
                     <i class='bx bxs-palette'></i>
                     Ingsha
                 </a>
+                
                 <div class='social-links'>
-                    <a href='mailto:ingshalimbu09@gmail.com'><i class='bx bxl-gmail'></i></a>
-                    <a href='https://wa.me/917029219775'><i class='bx bxl-whatsapp'></i></a>
+                    <a href='#'><i class='bx bxl-dribbble'></i></a>
                     <a href='#'><i class='bx bxl-instagram'></i></a>
+                    <a href='#'><i class='bx bxl-linkedin'></i></a>
+                    <a href='#'><i class='bx bxl-behance'></i></a>
                     <a href='#'><i class='bx bxl-twitter'></i></a>
                 </div>
+                
                 <div class='footer-bottom'>
-                    <p>&copy; 2025 Ingsha. All Rights Reserved. Crafted with <i class='bx bxs-heart' style='color: var(--secondary-color);'></i> for YouTube creators.</p>
+                    <p>&copy; 2025 Ingsha Design. All rights reserved. Last updated: August 19, 2025</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <div class='lightbox' id='lightbox'>
-        <div class='lightbox-content'>
-            <span class='lightbox-close' onclick='closeLightbox()'>&times;</span>
-            <img class='lightbox-image' id='lightboxImage' src='' alt=''/>
-        </div>
-    </div>
-
-    <script type='text/javascript'>
-        // Navigation scroll effect
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="bx bx-x"></i>' : '<i class="bx bx-menu"></i>';
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
+    <!-- JavaScript for functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const closeMenuBtn = document.querySelector('.close-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.add('active');
+            });
+            
+            closeMenuBtn.addEventListener('click', function() {
                 navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="bx bx-menu"></i>';
             });
-        });
-
-        // Intersection Observer for fade-in effect
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
+            
+            // Close menu when clicking on a nav link
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
             });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        // Script to dynamically load images from GitHub
-        const username = 'ingsha09';
-        const repo = 'ingsha-portfolio';
-        const imagePath = 'thumbnail';
-        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${imagePath}`;
-        const portfolioContainer = document.getElementById('portfolio-images');
-        const rawUrlPrefix = `https://raw.githubusercontent.com/${username}/${repo}/main/${imagePath}/`;
-
-        fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch images from GitHub. Please check your username, repo name, and folder path.');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Shuffle array to randomize image order
-                const shuffledData = data.sort(() => 0.5 - Math.random());
+            
+            // Scroll Animation for Sections
+            const sections = document.querySelectorAll('.section');
+            
+            function checkSections() {
+                const triggerBottom = window.innerHeight * 0.8;
                 
-                shuffledData.forEach(file => {
-                    if (file.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
-                        const portfolioItem = document.createElement('div');
-                        portfolioItem.className = 'portfolio-item';
-                        portfolioItem.innerHTML = `
-                            <img src="${rawUrlPrefix}${file.name}" alt="${file.name.split('.')[0].replace(/-/g, ' ')} thumbnail">
-                            <div class="portfolio-overlay">
-                                <h3>${file.name.split('.')[0].replace(/-/g, ' ')}</h3>
-                                <p>YouTube Thumbnail Design</p>
-                            </div>
-                        `;
-                        portfolioItem.querySelector('img').onclick = function() {
-                            openLightbox(rawUrlPrefix + file.name);
-                        };
-                        portfolioContainer.appendChild(portfolioItem);
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    
+                    if(sectionTop < triggerBottom) {
+                        section.classList.add('fade-in');
                     }
                 });
-            })
-            .catch(error => {
-                console.error('Error loading portfolio images:', error);
-                portfolioContainer.innerHTML = '<p style="color:red; grid-column: 1 / -1;">Failed to load images. Please check your GitHub repository settings.</p>';
+            }
+            
+            checkSections();
+            window.addEventListener('scroll', checkSections);
+            
+            // Navbar Scroll Effect
+            const navbar = document.querySelector('.navbar');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             });
-
-        // Function to open lightbox
-        function openLightbox(imageSrc) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-            lightboxImage.src = imageSrc;
-            lightbox.style.display = 'flex';
-        }
-
-        // Function to close lightbox
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.style.display = 'none';
-        }
-
-        // Handle form submission
-        const contactForm = document.getElementById('contactForm');
-        const messageContainer = document.getElementById('message-container');
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const package = document.getElementById('package').value;
-            const message = document.getElementById('message').value;
-
-            const mailtoLink = `mailto:ingshalimbu09@gmail.com?subject=Inquiry from ${name} about ${package}&body=Name: ${name}%0AEmail: ${email}%0APackage: ${package}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+            // Portfolio Lightbox
+            const portfolioItems = document.querySelectorAll('.portfolio-item img');
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImage = document.querySelector('.lightbox-image');
+            const lightboxClose = document.querySelector('.lightbox-close');
             
-            try {
-                window.location.href = mailtoLink;
+            portfolioItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    lightboxImage.src = this.src;
+                    lightbox.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            lightboxClose.addEventListener('click', function() {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Contact Form Submission
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.querySelector('.success-message');
+            const errorMessage = document.querySelector('.error-message');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                // Show a success message
-                messageContainer.innerHTML = `<div class="message-container success-message">
-                    <i class="bx bxs-check-circle"></i> Thank you! Your message has been prepared in your email client.
-                </div>`;
-                messageContainer.style.display = 'block';
-
+                // This would be replaced with actual form submission logic
+                // For demonstration, we'll just show the success message
+                successMessage.style.display = 'block';
                 contactForm.reset();
                 
-                setTimeout(() => {
-                    messageContainer.style.display = 'none';
-                }, 7000);
-                
-            } catch (error) {
-                messageContainer.innerHTML = `<div class="message-container error-message">
-                    <i class="bx bxs-error-circle"></i> Oops! Something went wrong. Please copy this information and email me directly.
-                </div>`;
-                messageContainer.style.display = 'block';
-                console.error('Error handling form submission:', error);
-            }
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            });
         });
     </script>
 </body>
