@@ -3,505 +3,1401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional YouTube thumbnail designer creating high-converting thumbnails to boost your channel's performance">
-    <meta name="keywords" content="YouTube thumbnail, thumbnail designer, video thumbnail, graphic design">
-    <meta name="author" content="Ingsha">
-    
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Ingsha | Professional YouTube Thumbnail Designer">
-    <meta property="og:description" content="Boost your YouTube channel with eye-catching, high-converting thumbnails">
-    <meta property="og:image" content="https://raw.githubusercontent.com/ingsha09/ingsha-portfolio/main/profile/me.jpg">
-    <meta property="og:url" content="https://ingsha09.github.io/ingsha-portfolio/">
-    <meta property="og:type" content="website">
-    
     <title>Ingsha | Professional YouTube Thumbnail Designer</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap' rel='stylesheet'/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
     
-    <!-- Preconnect to external resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-color: #8B5CF6;
+            --primary-dark: #7C3AED;
+            --secondary-color: #EC4899;
+            --accent-color: #06B6D4;
+            --background-color: #F8FAFC;
+            --card-color: #FFFFFF;
+            --text-color: #1E293B;
+            --light-text-color: #64748B;
+            --border-color: #E2E8F0;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            --border-radius: 16px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-close-btn {
+            display: none; /* Hide on desktop */
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-color);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--gradient-primary);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            /* FIX: Added padding to push content below the fixed navbar */
+            padding-top: 100px; 
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNS44NTcgMzEuNjg1QzMyLjYzNiAzNC45MDYgMjcuMzY0IDM0LjkwNiAyNC4xNDMgMzEuNjg1QzIxLjkyMiAyOC40NjQgMjEuOTIyIDIzLjE5MiAyNC4xNDMgMTkuOTcxQzI3LjM2NCAxNi43NSAzMi42MzYgMTYuNzUgMzUuODU3IDE5Ljk3MUMzOS4wNzggMjMuMTkyIDM5LjA3OCAyOC40NjQgMzUuODU3IDMxLjY4NSIgc3Ryb2tlPSJoc2xhKDMzMCwgMTAwJSwgOTAlKScgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjMiLz48cGF0aCBkPSJNMjguNTk1IDIzLjM2N0MyNi43MDggMjUuMjU0IDIzLjYzMyAyNS4yNTQgMjEuNzQ2IDIzLjM2N0MxOS44NTggMjEuNDc5IDE5LjgyMiAxNy43MzIgMjEuNzQ2IDE1Ljg0NEMyMy42MzMgMTMuOTU3IDI2LjcwOCAxMy45NTcgMjguNTk1IDE1Ljg0NEMzMC40ODIgMTcuNzMzIDMwLjQ4MiAyMS40NzkgMjguNTk1IDIzLjM2NyIgc3Ryb2tlPSJoc2xhKDMzMCwgMTAwJSwgOTAlKScgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjMiLz48L2c+PC9zdmc+');
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 1;
+        }
+
+        .profile-img-container {
+            position: relative;
+            margin-bottom: 2.5rem;
+            border-radius: 50%;
+            overflow: visible;
+            box-shadow: var(--shadow-lg);
+            animation: pulse 2s infinite;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            object-fit: cover;
+            animation: bounceIn 1s ease-out;
+        }
+
+        .badge {
+            position: absolute;
+            bottom: -5px;
+            right: -10px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            z-index: 2;
+            transform: rotate(0deg);
+            white-space: nowrap;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            margin: 0 0 1rem;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-top: -1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin: 0 0 2.5rem;
+            font-weight: 400;
+            max-width: 650px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            background-color: var(--card-color);
+            color: var(--primary-color);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            background-color: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .scroll-indicator i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section {
+            padding: 8rem 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--light-text-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .service-card {
+            background-color: var(--card-color);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card.popular {
+            transform: scale(1.05);
+            border: 2px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card.popular::after {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .service-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .service-card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 50%;
+            color: var(--primary-color);
+        }
+
+        .service-card h3 {
+            color: var(--text-color);
+            font-size: 1.8rem;
+            margin: 0 0 1rem;
+            font-weight: 700;
+        }
+
+        .service-card .price {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            margin: 1rem 0;
+            display: flex;
+            align-items: baseline;
+            gap: 0.25rem;
+        }
+
+        .service-card .price span {
+            font-size: 1.2rem;
+            color: var(--light-text-color);
+            font-weight: 500;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+            color: var(--light-text-color);
+            flex-grow: 1; /* Pushes button to the bottom */
+        }
+
+        .service-card ul li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-card ul li i {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .service-card .order-button {
+            display: block;
+            margin-top: 2rem;
+            text-align: center;
+            padding: 1rem;
+            background: var(--gradient-primary);
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+            
+        .service-card .order-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            margin-bottom: 1rem;
+            aspect-ratio: 16 / 9;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            border-radius: var(--border-radius);
+            cursor: zoom-in;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+            display: flex;
+            align-items: end;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .loading-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--light-text-color);
+            font-size: 1.2rem;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: -10px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            z-index: 2001;
+            background: none;
+            border: none;
+        }
+
+        .testimonials {
+            background-color: rgba(139, 92, 246, 0.05);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--card-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: left;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '“';
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            font-size: 6rem;
+            color: rgba(139, 92, 246, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin: 1.5rem 0;
+            color: var(--text-color);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-author-info h4 {
+            margin: 0;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .testimonial-author-info p {
+            margin: 0;
+            color: var(--light-text-color);
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            background-color: var(--card-color);
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 0.25rem;
+        }
+
+        .contact-item-content h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.3rem;
+            color: var(--text-color);
+        }
+
+        .contact-item-content p {
+            margin: 0;
+            color: var(--light-text-color);
+            word-break: break-all;
+        }
+
+        .contact-form {
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            background-color: #ffffff;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+            
+        .form-group label i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--gradient-primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .message-container {
+            display: none;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 1px solid;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .success-message {
+            background-color: #DCFCE7;
+            color: #166534;
+            border-color: #BBF7D0;
+        }
+
+        .error-message {
+            background-color: #FEE2E2;
+            color: #991B1B;
+            border-color: #FECACA;
+        }
+
+        .message-container i {
+            margin-right: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            background-color: #1E293B;
+            color: #E2E8F0;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-logo i {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            80% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 320px;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2.5rem;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                /* FIX: Set z-index to appear above the navbar button */
+                z-index: 1100;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-close-btn {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1.5rem;
+                background: none;
+                border: none;
+                font-size: 2.5rem;
+                color: var(--text-color);
+                cursor: pointer;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 6rem 0;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .service-card.popular {
+                transform: scale(1);
+            }
+
+            .service-card.popular:hover {
+                transform: scale(1) translateY(-10px);
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .profile-img {
+                width: 130px;
+                height: 130px;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader">
-            <i class='bx bxs-palette bx-spin'></i>
-        </div>
-    </div>
-
-    <!-- Header & Navigation -->
-    <header class="header">
-        <div class="navbar">
-            <a class="logo" href="#">
-                <i class="bx bxs-palette"></i>
-                <span>Ingsha</span>
-            </a>
-            <nav class="nav-links">
-                <a href="javascript:void(0)" class="close-btn mobile-menu-btn" aria-label="Close menu">
-                    <i class="bx bx-x"></i>
-                </a>
-                <a href="#services">Services</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#process">My Process</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#contact">Contact</a>
-            </nav>
-            <div class="nav-buttons">
-                <a href="#contact" class="btn-nav-cta">Get Started</a>
-                <button class="mobile-menu-btn" aria-label="Open menu">
-                    <i class="bx bx-menu"></i>
-                </button>
-            </div>
-        </div>
+    <header class='navbar'>
+        <a class='logo' href='#'>
+            <i class='bx bxs-palette'></i>
+            Ingsha
+        </a>
+        <nav>
+            <ul class='nav-links' id="nav-links">
+                <li><button class='nav-close-btn' aria-label="Close navigation menu"><i class='bx bx-x'></i></button></li>
+                <li><a href='#services'>Services</a></li>
+                <li><a href='#portfolio'>Portfolio</a></li>
+                <li><a href='#testimonials'>Testimonials</a></li>
+                <li><a href='#contact'>Contact</a></li>
+            </ul>
+        </nav>
+        <button class='mobile-menu-btn' aria-label="Open navigation menu" aria-controls="nav-links" aria-expanded="false">
+            <i class='bx bx-menu'></i>
+        </button>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <div class="profile-img-container">
-                <img class="profile-img" src="https://raw.githubusercontent.com/ingsha09/ingsha-portfolio/main/profile/me.jpg" alt="Ingsha - Professional Thumbnail Designer">
-                <div class="badge">
-                    <i class="bx bxs-star"></i>
-                    Top Rated
+    <main>
+        <section class='hero' id="home">
+            <div class='hero-content'>
+                <div class='profile-img-container'>
+                    <img class='profile-img' src='https://raw.githubusercontent.com/ingsha09/ingsha-portfolio/main/profile/me.jpg' alt='Ingsha, a professional thumbnail designer'/>
+                    <div class='badge'>
+                        <i class='bx bxs-star'></i>
+                        Top Rated
+                    </div>
                 </div>
-            </div>
-            <h1>Turn Viewers Into Subscribers</h1>
-            <p class="hero-subtitle">I create eye-catching YouTube thumbnails that boost your click-through rate up to <span class="highlight">65%</span> and help your videos stand out from the competition.</p>
-            <div class="hero-cta-group">
-                <a href="#portfolio" class="cta-button cta-primary">
-                    <i class="bx bxs-image-alt"></i>
-                    See My Work
-                </a>
-                <a href="#contact" class="cta-button cta-secondary">
-                    <i class="bx bxs-paper-plane"></i>
-                    Get a Quote
+                <h1>Ingsha</h1>
+                <h2 class="subtitle">Thumbnails That Get Clicks</h2>
+                <p>I design irresistible YouTube thumbnails that stop the scroll, spark curiosity, and dramatically boost your click-through rate. Let's make your videos unmissable.</p>
+                <a href='#contact' class='cta-button'>
+                    <i class='bx bxs-rocket'></i>
+                    Boost My CTR
                 </a>
             </div>
-            <div class="stats-container">
-                <div class="stat-item">
-                    <h3>100+</h3>
-                    <p>Completed Projects</p>
-                </div>
-                <div class="stat-item">
-                    <h3>98%</h3>
-                    <p>Client Satisfaction</p>
-                </div>
-                <div class="stat-item">
-                    <h3>24h</h3>
-                    <p>Fast Delivery</p>
-                </div>
+            <div class='scroll-indicator'>
+                <a href="#services" aria-label="Scroll to services section">
+                    <i class='bx bxs-down-arrow'></i>
+                    <span>Explore Services</span>
+                </a>
             </div>
-        </div>
-        <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="300">
-            <i class="bx bxs-down-arrow"></i>
-            <span>Scroll to explore</span>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Services</span>
-                <h2>Packages Tailored For YouTubers</h2>
-                <p>Choose the perfect package for your channel's needs. All packages include high-resolution files, unlimited color options, and fast delivery.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <i class="bx bxs-paint icon"></i>
-                    <h3>Single Thumbnail</h3>
-                    <div class="price">$5 <span>/one-time</span></div>
-                    <ul>
-                        <li><i class="bx bx-check"></i> 1 custom thumbnail design</li>
-                        <li><i class="bx bx-check"></i> High-resolution JPG/PNG file</li>
-                        <li><i class="bx bx-check"></i> 24-hour delivery</li>
-                        <li><i class="bx bx-check"></i> 1 round of revisions</li>
-                        <li><i class="bx bx-check"></i> Source file included</li>
-                    </ul>
-                    <a href="#contact" class="order-button">Order Now</a>
+        <section id='services' class='section'>
+            <div class='container'>
+                <div class='section-header'>
+                    <h2>Pricing & Packages</h2>
+                    <p>Find the perfect investment for your channel's growth. Each package is designed to deliver maximum impact, engagement, and return on investment.</p>
                 </div>
-                <div class="service-card popular" data-aos="fade-up" data-aos-delay="200">
-                    <div class="popular-badge">Most Popular</div>
-                    <i class="bx bxs-layer icon"></i>
-                    <h3>Thumbnail Pro Pack</h3>
-                    <div class="price">$15 <span>/one-time</span></div>
-                    <ul>
-                        <li><i class="bx bx-check"></i> 3 custom thumbnails</li>
-                        <li><i class="bx bx-check"></i> High-resolution JPG/PNG files</li>
-                        <li><i class="bx bx-check"></i> 48-hour delivery</li>
-                        <li><i class="bx bx-check"></i> 2 rounds of revisions</li>
-                        <li><i class="bx bx-check"></i> Source files included</li>
-                        <li><i class="bx bx-check"></i> Channel branding consistency</li>
-                    </ul>
-                    <a href="#contact" class="order-button">Order Now</a>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <i class="bx bxs-rocket icon"></i>
-                    <h3>Channel Booster</h3>
-                    <div class="price">$25 <span>/one-time</span></div>
-                    <ul>
-                        <li><i class="bx bx-check"></i> 5 premium thumbnails</li>
-                        <li><i class="bx bx-check"></i> Click-optimized designs</li>
-                        <li><i class="bx bx-check"></i> 72-hour delivery</li>
-                        <li><i class="bx bx-check"></i> 3 rounds of revisions</li>
-                        <li><i class="bx bx-check"></i> Source files included</li>
-                        <li><i class="bx bx-check"></i> Channel branding consistency</li>
-                        <li><i class="bx bx-check"></i> Thumbnail template</li>
-                    </ul>
-                    <a href="#contact" class="order-button">Order Now</a>
+                <div class='services-grid'>
+                    <div class='service-card'>
+                        <div class="icon"><i class='bx bxs-paint'></i></div>
+                        <h3>Starter Spark</h3>
+                        <div class='price'>$4.99 <span>/thumbnail</span></div>
+                        <ul>
+                            <li><i class='bx bxs-check-circle'></i>1 High-Impact Thumbnail</li>
+                            <li><i class='bx bxs-check-circle'></i>Custom Branded Design</li>
+                            <li><i class='bx bxs-check-circle'></i>HD Quality Files (JPG & PNG)</li>
+                            <li><i class='bx bxs-check-circle'></i>2 Rounds of Revisions</li>
+                            <li><i class='bx bxs-check-circle'></i>24-Hour Turnaround</li>
+                        </ul>
+                        <a href='#contact' class='order-button'>Get Started</a>
+                    </div>
+                    <div class='service-card popular'>
+                        <div class="icon"><i class='bx bxs-layer'></i></div>
+                        <h3>Creator Pack</h3>
+                        <div class='price'>$14.99 <span>/3 thumbnails</span></div>
+                        <ul>
+                            <li><i class='bx bxs-check-circle'></i>3 High-Impact Thumbnails</li>
+                            <li><i class='bx bxs-check-circle'></i>Consistent Channel Style</li>
+                            <li><i class='bx bxs-check-circle'></i>HD Quality Files (JPG & PNG)</li>
+                            <li><i class='bx bxs-check-circle'></i>3 Rounds of Revisions</li>
+                            <li><i class='bx bxs-check-circle'></i>48-Hour Turnaround</li>
+                            <li><i class='bx bxs-check-circle'></i>Source File Included</li>
+                        </ul>
+                        <a href='#contact' class='order-button'>Choose Plan</a>
+                    </div>
+                    <div class='service-card'>
+                        <div class="icon"><i class='bx bxs-rocket'></i></div>
+                        <h3>Viral Edge</h3>
+                        <div class='price'>$24.99 <span>/5 thumbnails</span></div>
+                        <ul>
+                            <li><i class='bx bxs-check-circle'></i>5 High-Impact Thumbnails</li>
+                            <li><i class='bx bxs-check-circle'></i>A/B Test Inspired Concepts</li>
+                            <li><i class='bx bxs-check-circle'></i>HD Quality Files (JPG & PNG)</li>
+                            <li><i class='bx bxs-check-circle'></i><strong>Unlimited Revisions</strong></li>
+                            <li><i class='bx bxs-check-circle'></i>Priority Support & Delivery</li>
+                            <li><i class='bx bxs-check-circle'></i>Source File Included</li>
+                        </ul>
+                        <a href='#contact' class='order-button'>Go Viral</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Portfolio</span>
-                <h2>Featured Work</h2>
-                <p>Browse through my recent YouTube thumbnail designs that have helped creators increase their click-through rates and grow their channels.</p>
+        <section id='portfolio' class='section'>
+            <div class='container'>
+                <div class='section-header'>
+                    <h2>My Portfolio</h2>
+                    <p>Explore a gallery of thumbnails that have driven millions of views and helped creators stand out in a crowded digital space.</p>
+                </div>
+                <div id='portfolio-images' class='portfolio-grid'>
+                    <!-- Portfolio images will be loaded here by JavaScript -->
+                </div>
             </div>
-            <div class="portfolio-filter" data-aos="fade-up">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="gaming">Gaming</button>
-                <button class="filter-btn" data-filter="tech">Tech</button>
-                <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
-                <button class="filter-btn" data-filter="education">Education</button>
-            </div>
-            <div id="portfolio-images" class="portfolio-grid" data-aos="fade-up">
-                <!-- Portfolio items will be loaded via JavaScript -->
-                <div class="portfolio-item" data-category="gaming">
-                    <div class="portfolio-item-inner">
-                        <img src="portfolio/gaming-1.jpg" alt="Gaming thumbnail for popular Minecraft channel">
-                        <div class="portfolio-overlay">
-                            <h4>Minecraft Series</h4>
-                            <p>Increased CTR by 45%</p>
-                            <button class="view-btn" onclick="openLightbox('portfolio/gaming-1.jpg', 'Minecraft Series Thumbnail')">View Larger</button>
+        </section>
+
+        <section id='testimonials' class='section testimonials'>
+            <div class='container'>
+                <div class='section-header'>
+                    <h2>What Creators Are Saying</h2>
+                    <p>Real results from real creators. See how my designs have helped transform their channels and accelerate their growth.</p>
+                </div>
+                <div class='testimonials-grid'>
+                    <div class='testimonial-card'>
+                        <div class='testimonial-content'>
+                            "Ingsha's thumbnails completely transformed my channel. My click-through rate jumped by 65% in just one month! The designs are professional, eye-catching, and perfectly capture the essence of my videos."
                         </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="tech">
-                    <div class="portfolio-item-inner">
-                        <img src="portfolio/tech-1.jpg" alt="Tech review thumbnail for latest smartphone">
-                        <div class="portfolio-overlay">
-                            <h4>Smartphone Review</h4>
-                            <p>Generated 250K+ views</p>
-                            <button class="view-btn" onclick="openLightbox('portfolio/tech-1.jpg', 'Smartphone Review Thumbnail')">View Larger</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more portfolio items as needed -->
-            </div>
-            <div class="portfolio-cta" data-aos="fade-up">
-                <a href="#contact" class="btn-secondary">Need a custom thumbnail? Let's talk!</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section (New) -->
-    <section id="process" class="section process-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Process</span>
-                <h2>How I Create Your Perfect Thumbnail</h2>
-                <p>My proven 4-step process ensures your thumbnails are eye-catching, on-brand, and optimized for maximum clicks.</p>
-            </div>
-            <div class="process-grid">
-                <div class="process-item" data-aos="fade-right" data-aos-delay="100">
-                    <div class="process-number">01</div>
-                    <div class="process-content">
-                        <h3>Consultation & Brief</h3>
-                        <p>We'll discuss your channel's style, audience, and specific needs to understand your vision completely.</p>
-                    </div>
-                </div>
-                <div class="process-item" data-aos="fade-left" data-aos-delay="200">
-                    <div class="process-number">02</div>
-                    <div class="process-content">
-                        <h3>Design & Development</h3>
-                        <p>I'll create your thumbnail with attention to color psychology, typography, and strategic composition.</p>
-                    </div>
-                </div>
-                <div class="process-item" data-aos="fade-right" data-aos-delay="300">
-                    <div class="process-number">03</div>
-                    <div class="process-content">
-                        <h3>Revision & Refinement</h3>
-                        <p>You'll review the design and I'll make any necessary adjustments until you're completely satisfied.</p>
-                    </div>
-                </div>
-                <div class="process-item" data-aos="fade-left" data-aos-delay="400">
-                    <div class="process-number">04</div>
-                    <div class="process-content">
-                        <h3>Delivery & Support</h3>
-                        <p>Receive your high-resolution files with tips on implementation for maximum impact on your channel.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Testimonials</span>
-                <h2>What Creators Say</h2>
-                <p>Don't just take my word for it - hear what content creators have to say about my thumbnail design services.</p>
-            </div>
-            <div class="testimonials-slider" data-aos="fade-up">
-                <div class="testimonials-grid">
-                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="quote-icon"><i class="bx bxs-quote-alt-left"></i></div>
-                        <div class="testimonial-content">
-                            "Ingsha's thumbnails have completely transformed my channel. My click-through rate increased by 65% in just one month. The designs are professional, eye-catching, and perfectly aligned with my brand. I wouldn't trust anyone else with my thumbnails!"
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="testimonial-author-img"/>
-                            <div class="testimonial-author-info">
+                        <div class='testimonial-author'>
+                            <img src='https://randomuser.me/api/portraits/women/32.jpg' alt='Sarah Johnson' class='testimonial-author-img'/>
+                            <div class='testimonial-author-info'>
                                 <h4>Sarah Johnson</h4>
-                                <p>Travel Vlogger <span class="subscriber-count">380K subscribers</span></p>
+                                <p>Travel Vlogger</p>
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="quote-icon"><i class="bx bxs-quote-alt-left"></i></div>
-                        <div class="testimonial-content">
-                            "I've tried several thumbnail designers before, but Ingsha stands out. His attention to detail and understanding of what makes a thumbnail clickable is exceptional. My audience engagement has increased dramatically, and I credit a large part of that to these amazing thumbnails."
+                    <div class='testimonial-card'>
+                        <div class='testimonial-content'>
+                            "I've tried several designers, but Ingsha is in a league of his own. His attention to detail and understanding of what makes a thumbnail clickable is exceptional. My audience engagement has never been higher!"
                         </div>
-                        <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Michael Chen" class="testimonial-author-img"/>
-                            <div class="testimonial-author-info">
+                        <div class='testimonial-author'>
+                            <img src='https://randomuser.me/api/portraits/men/44.jpg' alt='Michael Chen' class='testimonial-author-img'/>
+                            <div class='testimonial-author-info'>
                                 <h4>Michael Chen</h4>
-                                <p>Tech Reviewer <span class="subscriber-count">1.2M subscribers</span></p>
+                                <p>Tech Reviewer</p>
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="quote-icon"><i class="bx bxs-quote-alt-left"></i></div>
-                        <div class="testimonial-content">
-                            "Working with Ingsha has been a game-changer for my cooking channel. His thumbnails are not only beautiful but strategically designed to attract viewers. I've seen a 40% increase in views since I started using his services. Highly recommended!"
+                    <div class='testimonial-card'>
+                        <div class='testimonial-content'>
+                            "Working with Ingsha was a game-changer. His thumbnails are not just beautiful, they're strategic. I've seen a consistent 40% increase in views since I started using his designs for my cooking channel."
                         </div>
-                        <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez" class="testimonial-author-img"/>
-                            <div class="testimonial-author-info">
+                        <div class='testimonial-author'>
+                            <img src='https://randomuser.me/api/portraits/women/68.jpg' alt='Emma Rodriguez' class='testimonial-author-img'/>
+                            <div class='testimonial-author-info'>
                                 <h4>Emma Rodriguez</h4>
-                                <p>Cooking Content Creator <span class="subscriber-count">750K subscribers</span></p>
+                                <p>Cooking Content Creator</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-controls">
-                    <button class="testimonial-control prev" aria-label="Previous testimonial"><i class="bx bx-chevron-left"></i></button>
-                    <div class="testimonial-dots"></div>
-                    <button class="testimonial-control next" aria-label="Next testimonial"><i class="bx bx-chevron-right"></i></button>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FAQ Section (New) -->
-    <section id="faq" class="section faq-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">FAQ</span>
-                <h2>Frequently Asked Questions</h2>
-                <p>Get answers to the most common questions about my thumbnail design services.</p>
-            </div>
-            <div class="faq-grid" data-aos="fade-up">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How long does it take to complete a thumbnail?</h3>
-                        <i class="bx bx-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>For a single thumbnail, I typically deliver within 24 hours. For larger packages, delivery times vary from 48-72 hours depending on complexity and revisions needed.</p>
-                    </div>
+        <section id='contact' class='section contact-section'>
+            <div class='container'>
+                <div class='section-header'>
+                    <h2>Let's Create Something Amazing</h2>
+                    <p>Ready to transform your channel's performance? Fill out the form below, and let's discuss how we can create thumbnails that demand to be clicked.</p>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Do you provide source files?</h3>
-                        <i class="bx bx-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes! All packages include the source files (PSD or AI) so you can make minor adjustments yourself or have them ready for future designers.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What information do you need from me?</h3>
-                        <i class="bx bx-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>To create the perfect thumbnail, I'll need your video topic, any specific images/elements you want included, your channel style/branding, and examples of thumbnails you like.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How many revisions are included?</h3>
-                        <i class="bx bx-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>The number of revision rounds depends on your package: Single Thumbnail (1 revision), Thumbnail Pro Pack (2 revisions), and Channel Booster (3 revisions).</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Contact</span>
-                <h2>Let's Work Together</h2>
-                <p>Ready to boost your YouTube performance? Fill out the form below to get a custom quote or just say hello!</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info" data-aos="fade-right">
-                    <div class="contact-item">
-                        <i class="bx bxs-envelope"></i>
-                        <div class="contact-item-content">
-                            <h3>Email</h3>
-                            <p><a href="mailto:ingshalimbu09@gmail.com">ingshalimbu09@gmail.com</a></p>
+                <div class='contact-container'>
+                    <div class='contact-info'>
+                        <div class='contact-item'>
+                            <i class='bx bxs-envelope'></i>
+                            <div class='contact-item-content'>
+                                <h3>Email</h3>
+                                <p>ingshalimbu09@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class='contact-item'>
+                            <i class='bx bxs-phone'></i>
+                            <div class='contact-item-content'>
+                                <h3>Phone / WhatsApp</h3>
+                                <p>+91 7029219775</p>
+                            </div>
+                        </div>
+                        <div class='contact-item'>
+                            <i class='bx bxs-map'></i>
+                            <div class='contact-item-content'>
+                                <h3>Location</h3>
+                                <p>Uttarey, Sikkim, India</p>
+                            </div>
+                        </div>
+                        <div class='contact-item'>
+                            <i class='bx bxs-time-five'></i>
+                            <div class='contact-item-content'>
+                                <h3>Response Time</h3>
+                                <p>Within 12-24 hours</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="bx bxs-phone"></i>
-                        <div class="contact-item-content">
-                            <h3>Phone</h3>
-                            <p><a href="tel:+917029219775">+91 7029219775</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="bx bxs-map"></i>
-                        <div class="contact-item-content">
-                            <h3>Location</h3>
-                            <p>Uttarey, Sikkim, India</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="bx bxs-time-five"></i>
-                        <div class="contact-item-content">
-                            <h3>Response Time</h3>
-                            <p>Within 24 hours</p>
-                        </div>
-                    </div>
-                    <div class="social-links-contact">
-                        <h3>Follow Me</h3>
-                        <div class="social-icons">
-                            <a href="mailto:ingshalimbu09@gmail.com" aria-label="Email"><i class="bx bxl-gmail"></i></a>
-                            <a href="https://wa.me/917029219775" aria-label="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="bx bxl-twitter"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form" data-aos="fade-left">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name"><i class="bx bxs-user"></i> Full Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Your name"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="email"><i class="bx bxs-envelope"></i> Email Address</label>
-                            <input type="email" id="email" name="email" required placeholder="your.email@example.com"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="package"><i class="bx bxs-package"></i> Interested Package</label>
-                            <select id="package" name="package" class="form-group-input">
-                                <option value="Single Thumbnail">Single Thumbnail ($5)</option>
-                                <option value="Thumbnail Pro Pack" selected>Thumbnail Pro Pack ($15)</option>
-                                <option value="Channel Booster">Channel Booster ($25)</option>
-                                <option value="Custom Project">Custom Project</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message"><i class="bx bxs-message-dots"></i> Message</label>
-                            <textarea id="message" name="message" required placeholder="Tell me about your project and needs..."></textarea>
-                        </div>
-                        <button type="submit" class="submit-button">
-                            <i class="bx bxs-paper-plane"></i> Send Message
-                        </button>
-                        <div id="message-container"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-top">
-                    <div class="footer-about">
-                        <a href="#" class="footer-logo">
-                            <i class="bx bxs-palette"></i>
-                            Ingsha
-                        </a>
-                        <p>Helping YouTube creators stand out with professional, eye-catching thumbnails that drive engagement and grow channels.</p>
-                    </div>
-                    <div class="footer-links">
-                        <div class="footer-links-column">
-                            <h4>Quick Links</h4>
-                            <a href="#services">Services</a>
-                            <a href="#portfolio">Portfolio</a>
-                            <a href="#process">My Process</a>
-                            <a href="#testimonials">Testimonials</a>
-                        </div>
-                        <div class="footer-links-column">
-                            <h4>Resources</h4>
-                            <a href="#faq">FAQ</a>
-                            <a href="#blog">Blog</a>
-                            <a href="#terms">Terms of Service</a>
-                            <a href="#privacy">Privacy Policy</a>
-                        </div>
-                    </div>
-                    <div class="footer-newsletter">
-                        <h4>Get Design Tips</h4>
-                        <p>Subscribe to receive YouTube thumbnail design tips and special offers</p>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="Your email address" required>
-                            <button type="submit"><i class="bx bx-right-arrow-alt"></i></button>
+                    <div class='contact-form'>
+                        <form id='contactForm'>
+                            <div class='form-group'>
+                                <label for='name'><i class='bx bxs-user'></i> Full Name</label>
+                                <input type='text' id='name' name='name' placeholder="Your full name" required/>
+                            </div>
+                            <div class='form-group'>
+                                <label for='email'><i class='bx bxs-envelope'></i> Email Address</label>
+                                <input type='email' id='email' name='email' placeholder="you@example.com" required/>
+                            </div>
+                            <div class='form-group'>
+                                <label for='package'><i class='bx bxs-package'></i> Select a Package</label>
+                                <select id='package' name='package' class='form-group-input'>
+                                    <option value='Starter Spark'>Starter Spark ($4.99)</option>
+                                    <option value='Creator Pack'>Creator Pack ($14.99)</option>
+                                    <option value='Viral Edge'>Viral Edge ($24.99)</option>
+                                    <option value='Custom Project'>Custom Project Inquiry</option>
+                                </select>
+                            </div>
+                            <div class='form-group'>
+                                <label for='message'><i class='bx bxs-message-dots'></i> Project Details</label>
+                                <textarea id='message' name='message' placeholder="Tell me about your channel and what you're looking for..." required></textarea>
+                            </div>
+                            <button type='submit' class='submit-button'>
+                                Send Project Inquiry <i class='bx bxs-paper-plane'></i>
+                            </button>
+                            <div id='message-container' class="message-container"></div>
                         </form>
                     </div>
                 </div>
-                <div class="footer-divider"></div>
-                <div class="footer-bottom">
-                    <p>&copy; <span id="current-year"></span> Ingsha. All Rights Reserved. Crafted with <i class="bx bxs-heart" style="color: var(--accent-color);"></i> for YouTube creators.</p>
-                    <div class="social-links">
-                        <a href="mailto:ingshalimbu09@gmail.com" aria-label="Email"><i class="bx bxl-gmail"></i></a>
-                        <a href="https://wa.me/917029219775" aria-label="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="bx bxl-twitter"></i></a>
-                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class='container'>
+            <div class='footer-content'>
+                <a href='#home' class='footer-logo'>
+                    <i class='bx bxs-palette'></i>
+                    Ingsha
+                </a>
+                <div class='social-links'>
+                    <a href='mailto:ingshalimbu09@gmail.com' target="_blank" rel="noopener noreferrer" title="Email"><i class='bx bxl-gmail'></i></a>
+                    <a href='https://wa.me/917029219775' target="_blank" rel="noopener noreferrer" title="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
+                    <a href='#' target="_blank" rel="noopener noreferrer" title="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href='#' target="_blank" rel="noopener noreferrer" title="Twitter"><i class='bx bxl-twitter'></i></a>
+                </div>
+                <div class='footer-bottom'>
+                    <p>&copy; <span id='current-year'></span> Ingsha Designs. Helping creators win the click.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <span class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">&times;</span>
-            <img class="lightbox-image" id="lightboxImage" src="" alt="">
-            <div class="lightbox-caption" id="lightboxCaption"></div>
+    <div class='lightbox' id='lightbox'>
+        <div class='lightbox-content'>
+            <button class='lightbox-close' aria-label="Close image viewer">&times;</button>
+            <img class='lightbox-image' id='lightboxImage' src='' alt='Enlarged portfolio image'/>
         </div>
     </div>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" aria-label="Back to top">
-        <i class="bx bxs-up-arrow"></i>
-    </button>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbar = document.querySelector('.navbar');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const navCloseBtn = document.querySelector('.nav-close-btn');
+            const sections = document.querySelectorAll('.section');
+            const portfolioContainer = document.getElementById('portfolio-images');
+            const contactForm = document.getElementById('contactForm');
+            const messageContainer = document.getElementById('message-container');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const currentYearSpan = document.getElementById('current-year');
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+            // --- Mobile Menu Functionality ---
+            const openMenu = () => {
+                navLinks.classList.add('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+            };
+            
+            const closeMenu = () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            };
+
+            mobileMenuBtn.addEventListener('click', openMenu);
+            navCloseBtn.addEventListener('click', closeMenu);
+            document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', closeMenu));
+            
+            // --- Dynamic Year & Scrolled Navbar ---
+            currentYearSpan.textContent = new Date().getFullYear();
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // --- Scroll Animations ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
+
+            // --- GitHub Portfolio Fetching ---
+            const fetchPortfolioImages = () => {
+                const username = 'ingsha09';
+                const repo = 'ingsha-portfolio';
+                const imagePath = 'thumbnail';
+                const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${imagePath}`;
+                const rawUrlPrefix = `https://raw.githubusercontent.com/${username}/${repo}/main/${imagePath}/`;
+
+                portfolioContainer.innerHTML = '<p class="loading-message">Loading portfolio...</p>';
+
+                fetch(apiUrl)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.json();
+                    })
+                    .then(data => {
+                        portfolioContainer.innerHTML = ''; 
+                        if (!Array.isArray(data) || data.length === 0) {
+                           portfolioContainer.innerHTML = '<p class="loading-message">No images found in portfolio.</p>';
+                           return;
+                        }
+                        const shuffledData = data.sort(() => 0.5 - Math.random());
+                        
+                        shuffledData.forEach(file => {
+                            if (file.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+                                const portfolioItem = document.createElement('div');
+                                portfolioItem.className = 'portfolio-item';
+                                const title = file.name.split('.')[0].replace(/-/g, ' ');
+                                portfolioItem.innerHTML = `
+                                    <img src="${rawUrlPrefix}${file.name}" alt="${title} thumbnail" loading="lazy">
+                                    <div class="portfolio-overlay">
+                                        <h3>${title}</h3>
+                                    </div>
+                                `;
+                                portfolioItem.querySelector('img').onclick = () => openLightbox(rawUrlPrefix + file.name, title);
+                                portfolioContainer.appendChild(portfolioItem);
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error loading portfolio images:', error);
+                        portfolioContainer.innerHTML = '<p class="loading-message" style="color:red;">Failed to load portfolio. Please check repository settings.</p>';
+                    });
+            };
+            fetchPortfolioImages();
+
+            // --- Lightbox Functionality ---
+            const openLightbox = (imageSrc, altText) => {
+                lightboxImage.src = imageSrc;
+                lightboxImage.alt = altText;
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeLightbox = () => {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = '';
+            };
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+
+            // --- Contact Form Handling (mailto) ---
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const packageType = document.getElementById('package').value;
+                const message = document.getElementById('message').value;
+
+                const mailtoLink = `mailto:ingshalimbu09@gmail.com?subject=Project Inquiry from ${name} - (${packageType})&body=Name: ${name}%0AEmail: ${email}%0APackage: ${packageType}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+                
+                try {
+                    window.location.href = mailtoLink;
+                    messageContainer.className = 'message-container success-message';
+                    messageContainer.innerHTML = '<i class="bx bxs-check-circle"></i> Success! Opening your email client...';
+                    messageContainer.style.display = 'block';
+                    contactForm.reset();
+                } catch (error) {
+                    messageContainer.className = 'message-container error-message';
+                    messageContainer.innerHTML = '<i class="bx bxs-error-circle"></i> Could not open email client. Please email me directly.';
+                    messageContainer.style.display = 'block';
+                    console.error('Error handling form submission:', error);
+                } finally {
+                    setTimeout(() => {
+                        messageContainer.style.display = 'none';
+                    }, 7000);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
